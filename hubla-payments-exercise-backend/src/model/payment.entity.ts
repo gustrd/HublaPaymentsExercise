@@ -1,6 +1,7 @@
-import { PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
 
-export abstract class Transaction {
+@Entity({ name: 'transaction' })
+export class Transaction {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -13,7 +14,7 @@ export abstract class Transaction {
     @Column({ type: 'varchar', length: 30, nullable: false })
     productDescription: string;
 
-    @Column({ type: 'number', nullable: false })
+    @Column({ type: 'float', nullable: false })
     transactionValue: number;
 
     @Column({ type: 'varchar', length: 20, nullable: false })
