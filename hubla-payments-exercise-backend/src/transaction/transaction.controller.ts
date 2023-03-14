@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseInterceptors, UploadedFile, ParseFilePipe, MaxFileSizeValidator, FileTypeValidator } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
 import { TransactionDTO } from '../dto/transaction.dto';
+import { FileInterceptor } from '@nestjs/platform-express/multer';
 
 @Controller('transaction')
 export class TransactionController {
@@ -14,5 +15,20 @@ export class TransactionController {
     @Post()
     public async post( @Body() dto: TransactionDTO): Promise<TransactionDTO> {
         return this.serv.create(dto);
+    }
+
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('file'))
+    public async uploadFile(@UploadedFile(
+        new ParseFilePipe({
+          validators: [
+            new MaxFileSizeValidator({ maxSize: 10000 }),
+            new FileTypeValidator({ fileType: 'text/plain' }),
+          ],
+        }),
+        ) file: Express.Multer.File) {
+
+        //TODO: Create real service
+        console.log(file.buffer.toString());
     }
 }
