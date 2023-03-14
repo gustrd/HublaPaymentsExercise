@@ -17,4 +17,17 @@ export class TransactionService {
         return this.repo.save(dto.toEntity())
             .then(e => TransactionDTO.fromEntity(e));
     }
+
+    public async createBulkFromPlainFile(inputString: string): Promise<string> {
+        const dtos = TransactionDTO.parseTransaction(inputString);
+        let insertCounter = 0;
+
+        for (const dto of dtos)
+        {
+            this.repo.save(dto.toEntity());
+            insertCounter++;
+        }
+
+        return "Inserted " + insertCounter + " new product transactions.";
+    }
 }
