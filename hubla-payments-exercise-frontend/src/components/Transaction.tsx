@@ -39,13 +39,14 @@ function Create(): JSX.Element
     try {
       //const accessToken = await getIdTokenClaims();
       const response = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/transaction`, {
-        method: "post",
+        method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
           "Accept": "application/json"
           //"authorization": `Bearer ${accessToken.__raw}`
         }),
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        mode: 'no-cors'
       });
       return response.ok;
     } catch (ex) {
