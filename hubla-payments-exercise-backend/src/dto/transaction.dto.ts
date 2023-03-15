@@ -15,7 +15,7 @@ export class TransactionDTO implements Readonly<TransactionDTO> {
 
   @ApiProperty({ required: true })
   @IsDateString()
-  transactionDate: Date;
+  transactionDate: string;
 
   @ApiProperty({ required: true })
   @IsString()
@@ -45,7 +45,7 @@ export class TransactionDTO implements Readonly<TransactionDTO> {
     return this.from({
       id: entity.id,
       transactionType: entity.transactionType,
-      transactionDate: entity.transactionDate,
+      transactionDate: entity.transactionDate.toISOString(),
       productDescription: entity.productDescription,
       transactionValue: entity.transactionValue,
       sellerName: entity.sellerName
@@ -56,7 +56,7 @@ export class TransactionDTO implements Readonly<TransactionDTO> {
     const it = new Transaction();
     it.id = this.id;
     it.transactionType = this.transactionType;
-    it.transactionDate = this.transactionDate;
+    it.transactionDate = new Date(this.transactionDate);
     it.productDescription = this.productDescription;
     it.transactionValue = this.transactionValue;
     it.sellerName = this.sellerName;
@@ -87,7 +87,7 @@ export class TransactionDTO implements Readonly<TransactionDTO> {
             const dto = new TransactionDTO();
             dto.id = uuidv4();
             dto.transactionType = transactionType;
-            dto.transactionDate = transactionDate; 
+            dto.transactionDate = transactionDate.toISOString(); 
             dto.productDescription = productDescription;
             dto.transactionValue = transactionValue;
             dto.sellerName = sellerName;
