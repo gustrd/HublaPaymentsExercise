@@ -11,18 +11,9 @@ function Create(): JSX.Element
   interface IValues {
       [key: string]: any;
   }
-  const [author, setAuthor] = useState<string>('');
   const [values, setValues] = useState<IValues>([]);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  
-  /*
-  useEffect(() => {
-      if (user) {
-      setAuthor(user.name)
-      }
-  } , [user])
-  */
   
   const handleFormSubmission = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
@@ -101,7 +92,7 @@ function Create(): JSX.Element
           </div>
           <div className="form-group col-md-12">
             <label htmlFor="sellerName"> Seller Name </label>
-            <input type="text" id="sellerName" defaultValue={author} onChange={(e) => handleInputChanges(e)} name="sellerName" className="form-control" placeholder="Enter sellerName"/>
+            <input type="text" id="sellerName" onChange={(e) => handleInputChanges(e)} name="sellerName" className="form-control" placeholder="Enter sellerName"/>
           </div>
           <div className="form-group col-md-4 pull-right">
             <button className="btn btn-success" type="submit">
