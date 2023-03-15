@@ -22,7 +22,7 @@ function Create(): JSX.Element
         id: uuidv4(),
         transactionType: values.transactionType,
         transactionDate: values.transactionDate,
-        productDescription: values.productDescriptio,
+        productDescription: values.productDescription,
         transactionValue: values.transactionValue,
         sellerName: values.sellerName
       }
@@ -94,6 +94,10 @@ function Create(): JSX.Element
           <div className="form-group col-md-12">
             <label htmlFor="sellerName"> Seller Name </label>
             <input type="text" id="sellerName" onChange={(e) => handleInputChanges(e)} name="sellerName" className="form-control" placeholder="Enter sellerName"/>
+          </div>
+          <div className="form-group col-md-12">
+            <label htmlFor="productDescription"> Product Description </label>
+            <input type="text" id="productDescription" onChange={(e) => handleInputChanges(e)} name="productDescription" className="form-control" placeholder="Enter productDescription"/>
           </div>
           <div className="form-group col-md-4 pull-right">
             <button className="btn btn-success" type="submit">
