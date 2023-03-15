@@ -1,24 +1,71 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { configService } from '../config/config.service';
-import { TransactionModule } from './transaction.module';
 import { TransactionService } from './transaction.service';
+import { TransactionDTO } from '../dto/transaction.dto';
+import { Repository } from 'typeorm';
+import { Transaction } from '../model/transaction.entity';
+import { v4 as uuid } from 'uuid';
 
 describe('TransactionService', () => {
-  let service: TransactionService;
+  let transactionService: TransactionService;
+  let mockRepo: Repository<Transaction>;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
-        TransactionModule
-      ]
-    }).compile();
+  const mockTransaction = new Transaction();
+  mockTransaction.id = uuid();
+  mockTransaction.productDescription = "Teste1";
+  mockTransaction.sellerName = "John Doe";
+  mockTransaction.transactionDate = new Date("2022-03-03T13:12:16-03:00");
+  mockTransaction.transactionType = 1;
+  mockTransaction.transactionValue = 0.01;
 
-    service = module.get<TransactionService>(TransactionService);
+  const mockTransactionDTO: TransactionDTO = TransactionDTO.fromEntity(mockTransaction);
+  const mockTransactionString: string = "12022-03-03T13:12:16-03:00TESTE1                        0000000001JOHN DOE";
+
+  beforeAll(() => {
+    mockRepo = {
+      find: jest.fn().mockResolvedValue([mockTransaction]),
+      save: jest.fn().mockResolvedValue(mockTransaction),
+    } as unknown as Repository<Transaction>;
+
+    transactionService = new TransactionService(mockRepo);
+    
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  describe('getAll', () => {
+    it('should return an array of TransactionDTOs', async () => {
+      const transactions = await transactionService.getAll();
+      expect(transactions).toEqual([mockTransactionDTO]);
+    });
+
+    it('should call find on the repository', async () => {
+      await transactionService.getAll();
+      expect(mockRepo.find).toHaveBeenCalled();
+    });
+  });
+
+  describe('create', () => {
+    it('should return a TransactionDTO', async () => {
+      const transaction = await transactionService.create(mockTransactionDTO);
+      expect(transaction).toEqual(mockTransactionDTO);
+    });
+
+    it('should call save on the repository with the correct arguments', async () => {
+      await transactionService.create(mockTransactionDTO);
+      expect(mockRepo.save).toHaveBeenCalledWith(mockTransaction);
+    });
+  });
+
+  describe('createBulkFromPlainFile', () => {
+    it('should return a success message with the number of transactions inserted', async () => {
+      const result = await transactionService.createBulkFromPlainFile(mockTransactionString);
+      expect(result).toEqual('Inserted 1 new product transactions.');
+    });
+
+    it('should call save on the repository for each transaction in the input string', async () => {
+      await transactionService.createBulkFromPlainFile(mockTransactionString);
+      expect(mockRepo.save).toHaveBeenCalledWith(mockTransaction);
+    });
+  });
+
+  afterAll(async () => {
+    //await app.close();
   });
 });

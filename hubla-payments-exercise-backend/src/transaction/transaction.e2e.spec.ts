@@ -6,7 +6,6 @@ import { v4 as uuid } from 'uuid';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { configService } from '../config/config.service';
 import { TransactionDTO } from '../dto/transaction.dto';
-import * as fs from 'fs';
 
 describe('Transaction', () => {
   let app: INestApplication;

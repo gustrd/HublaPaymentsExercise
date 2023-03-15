@@ -28,7 +28,6 @@ export class TransactionController {
         }),
         ) file: Express.Multer.File) {
 
-        //TODO: Create real service
         return this.serv.createBulkFromPlainFile(file.buffer.toString());
     }
 }
