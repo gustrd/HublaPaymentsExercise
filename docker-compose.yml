@@ -6,7 +6,7 @@ services:
     build:
       context: ./hubla-payments-exercise-backend
       dockerfile: Dockerfile
-    image: nodejs
+    image: nodejs-hubla-backend
     container_name: hubla-app-backend
     restart: unless-stopped
     env_file: ./hubla-payments-exercise-backend/.env
@@ -22,6 +22,26 @@ services:
     command: bash -c "
       npm run typeorm:migration:run
       ; npm run start:dev"
+
+  nodejs-hubla-frontend:
+    build:
+      context: ./hubla-payments-exercise-frontend
+      dockerfile: Dockerfile
+    image: nodejs-hubla-frontend
+    container_name: hubla-app-frontend
+    restart: unless-stopped
+    env_file: ./hubla-payments-exercise-frontend/.env
+    environment:
+      REACT_APP_SERVER_BASE_URL: "http://127.0.0.1:3000"
+      PORT: "3001"
+    ports:
+      - "3001:3001"
+    networks:
+      - hubla-app-network
+    deploy:
+      restart_policy:
+        condition: on-failure
+    command: yarn run start
 
   postgres:
     image: postgres
