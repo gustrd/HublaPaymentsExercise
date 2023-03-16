@@ -20,7 +20,7 @@ function Home():JSX.Element {
         <section className="transaction-area section">
         <div className="container">
             <div className="row">
-            
+                Welcome to Hubla's seller's transaction dashboard. Choose your option at the navigation bar.
             </div>
         </div>
         </section>
