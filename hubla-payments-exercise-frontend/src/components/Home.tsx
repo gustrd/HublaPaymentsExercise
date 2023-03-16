@@ -5,16 +5,6 @@ import { useNavigate } from 'react-router-dom';
 function Home():JSX.Element {
     let navigate = useNavigate();
     //const { isAuthenticated, getIdTokenClaims, user } = useAuth0();
-    const [transactions, setTransactions] = useState();
-    
-    useEffect(() => {
-        const fetchTransactions = async (): Promise<any> => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/transaction`);
-        const json = await response.json();
-        setTransactions(json)
-        }
-        fetchTransactions();
-    }, [])
 
     return (
         <section className="transaction-area section">

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import {toast} from 'react-toastify';
+import fetch from 'cross-fetch';
 import 'react-toastify/dist/ReactToastify.css';
 
 function SellerBalanceListDataTable() {
