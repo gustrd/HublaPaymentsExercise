@@ -9,6 +9,8 @@ function Navbar() {
                 <li><Link className={"nav-link"} to={"/"}> Home </Link></li>
 
                 <li><Link className={"nav-link"} to={"/create"}> Register New </Link></li>
+
+                <li><Link className={"nav-link"} to={"/upload"}> Upload File </Link></li>
             </div>
         </header>
     );
