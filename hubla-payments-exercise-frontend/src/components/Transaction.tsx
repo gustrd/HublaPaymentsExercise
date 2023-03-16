@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import DatePicker from "react-datepicker";
 //import { useAuth0 } from '../../contexts/auth0-context';
+
+import "react-datepicker/dist/react-datepicker.css";
 
 function Create(): JSX.Element 
 {
@@ -12,6 +15,7 @@ function Create(): JSX.Element
       [key: string]: any;
   }
   const [values, setValues] = useState<IValues>([]);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   
@@ -88,7 +92,7 @@ function Create(): JSX.Element
           </div>
           <div className="form-group col-md-12">
             <label htmlFor="transactionDate"> Transaction Date </label>
-            <input type="text" id="transactionDate" onChange={(e) => handleInputChanges(e)} name="transactionDate" className="form-control" placeholder="Enter transactionDate" />
+            <DatePicker selected={selectedDate} onChange={(date: Date) => setSelectedDate(date)} />
           </div>
           <div className="form-group col-md-12">
             <label htmlFor="transactionValue"> Transaction Value </label>
