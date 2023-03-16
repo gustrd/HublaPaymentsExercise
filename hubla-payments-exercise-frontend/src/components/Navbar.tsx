@@ -13,6 +13,8 @@ function Navbar() {
                 <li><Link className={"nav-link"} to={"/upload"}> Upload File </Link></li>
 
                 <li><Link className={"nav-link"} to={"/list"}> Transaction List Table </Link></li>
+
+                <li><Link className={"nav-link"} to={"/listSellerBalance"}> Seller Balance List Table </Link></li>
  
             </div>
         </header>
