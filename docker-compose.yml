@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  nodejs-hubla-backend:
+    build:
+      context: ./hubla-payments-exercise-backend
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: hubla-app-backend
+    restart: unless-stopped
+    env_file: ./hubla-payments-exercise-backend/.env
+    environment:
+      POSTGRES_HOST: "postgres"
+    ports:
+      - "3000:3000"
+    networks:
+      - hubla-app-network
+    deploy:
+      restart_policy:
+        condition: on-failure
+    command: bash -c "
+      npm run typeorm:migration:run
+      ; npm run start:dev"
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "mysecretpassword"
+      POSTGRES_DB: "hubla_payments_exercise_database"
+    ports:
+      - "5432:5432"
+    networks:
+      - hubla-app-network
+
+networks:
+  hubla-app-network:
+    driver: bridge
