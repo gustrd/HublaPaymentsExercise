@@ -23,6 +23,17 @@ async function bootstrap() {
     SwaggerModule.setup('docs', app, document);
   }
 
+  //CORS configuration
+  app.enableCors(
+    {
+      "origin": ["http://localhost:3000","http://localhost:3001"],
+      "methods": ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+      "credentials": true,
+      "optionsSuccessStatus": 204,
+      "allowedHeaders": ["Content-Type", "Authorization"]
+    }
+  );
+
   await app.listen(3000);
 }
 bootstrap();

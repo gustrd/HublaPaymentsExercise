@@ -20,10 +20,10 @@ function Create(): JSX.Element
       setLoading(true);
       const formData = {
         id: uuidv4(),
-        transactionType: values.transactionType,
-        transactionDate: values.transactionDate,
+        transactionType: parseInt(values.transactionType),
+        transactionDate: selectedDate,
         productDescription: values.productDescription,
-        transactionValue: values.transactionValue,
+        transactionValue: parseFloat(values.transactionValue),
         sellerName: values.sellerName
       }
       const submitSuccess: boolean = await submitform(formData);
@@ -42,11 +42,14 @@ function Create(): JSX.Element
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
-          "Accept": "application/json"
+          "Accept": "application/json",
+          
           //"authorization": `Bearer ${accessToken.__raw}`
         }),
         body: JSON.stringify(formData),
-        mode: 'no-cors'
+        referrerPolicy: "strict-origin-when-cross-origin",
+        mode: 'cors',
+        credentials: "include"
       });
       return response.ok;
     } catch (ex) {
