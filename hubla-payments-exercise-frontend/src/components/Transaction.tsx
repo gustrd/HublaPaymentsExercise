@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import DatePicker from "react-datepicker";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 //import { useAuth0 } from '../../contexts/auth0-context';
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -55,8 +58,17 @@ function Create(): JSX.Element
         mode: 'cors',
         credentials: "include"
       });
-      return response.ok;
+
+      if (response.ok){
+        toast("Transaction registered with sucess.");
+        return true;
+      }
+      else{
+        toast("There was an error when registering your transaction.");
+        return false;
+      }
     } catch (ex) {
+        toast("There was an error when registering your transaction.");
       return false;
     }
   }
