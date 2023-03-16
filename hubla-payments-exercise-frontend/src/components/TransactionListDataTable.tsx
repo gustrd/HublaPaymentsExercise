@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function TransactionListDataTable() {
 
@@ -14,7 +16,7 @@ function TransactionListDataTable() {
     const [data, setData] = useState<Array<Transaction>>([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/transaction", {
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/transaction`, {
         "headers": {
             "accept": "*/*"
         },
@@ -25,7 +27,7 @@ function TransactionListDataTable() {
         })
         .then(response => response.json())
         .then(data => setData(data))
-        .catch(error => console.error(error));
+        .catch(error => toast("There was an error loading the data. Is the server down?"));
     }, []);
 
     const columns = [
