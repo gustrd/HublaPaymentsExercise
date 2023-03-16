@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Transaction } from '../model/transaction.entity';
 import { TransactionDTO } from '../dto/transaction.dto';
+import { SellerBalanceDTO } from '../dto/sellerBalance.dto';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -11,6 +12,15 @@ export class TransactionService {
     public async getAll(): Promise<TransactionDTO[]> {
         return await this.repo.find()
             .then(items => items.map(e => TransactionDTO.fromEntity(e)));
+    }
+
+    public async getAllSellerBalance(): Promise<SellerBalanceDTO[]> {
+        return await this.repo.find()
+            .then(items => SellerBalanceDTO.TransformTransactionListToSellerBalanceDTO(
+                                items.map(e => TransactionDTO.fromEntity(e)
+                                )
+                            )
+            );
     }
     
     public async create(dto: TransactionDTO): Promise<TransactionDTO> {

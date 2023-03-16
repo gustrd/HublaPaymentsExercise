@@ -4,10 +4,12 @@ import { configService } from '../config/config.service';
 import { TransactionController } from './transaction.controller';
 import { TransactionModule } from './transaction.module';
 import { TransactionDTO } from '../dto/transaction.dto';
+import { SellerBalanceDTO } from '../dto/sellerBalance.dto';
 import { TransactionService } from './transaction.service';
 import { v4 as uuid } from 'uuid';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Readable } from 'node:stream';
+
 
 //Test object builder
 const transactionDto1 = new TransactionDTO();
@@ -25,6 +27,8 @@ transactionDto2.sellerName = "John Doe";
 transactionDto2.transactionDate = (new Date("2022-03-03T13:12:16-03:00")).toISOString();
 transactionDto2.transactionType = 1;
 transactionDto2.transactionValue = 0.02;
+
+const sellerBalanceDto1 = new SellerBalanceDTO(transactionDto1.sellerName, transactionDto1.transactionValue + transactionDto2.transactionValue);
 
 const transactionFileBuffer = "12022-01-15T19:20:30-03:00CURSO DE BEM-ESTAR            0000012750JOSE CARLOS\n12021-12-03T11:46:02-03:00DOMINANDO INVESTIMENTOS       0000050000MARIA CANDIDA"
 
@@ -65,6 +69,17 @@ describe('TransactionController', () => {
     jest.spyOn(transactionService, 'getAll').mockResolvedValue(expectedTransactions);
 
     const actualTransactions = await transactionController.getAll();
+
+    expect(actualTransactions).toEqual(expectedTransactions);
+  });
+
+  it('should return an array of seller balance DTOs', async () => {
+    const expectedTransactions: SellerBalanceDTO[] = [
+      sellerBalanceDto1
+    ];
+    jest.spyOn(transactionService, 'getAllSellerBalance').mockResolvedValue([sellerBalanceDto1]);
+
+    const actualTransactions = await transactionController.getAllSellerBalance();
 
     expect(actualTransactions).toEqual(expectedTransactions);
   });

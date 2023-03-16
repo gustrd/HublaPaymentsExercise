@@ -1,5 +1,6 @@
 import { TransactionService } from './transaction.service';
 import { TransactionDTO } from '../dto/transaction.dto';
+import { SellerBalanceDTO } from '../dto/sellerBalance.dto';
 import { Repository } from 'typeorm';
 import { Transaction } from '../model/transaction.entity';
 import { v4 as uuid } from 'uuid';
@@ -38,6 +39,15 @@ describe('TransactionService', () => {
     it('should call find on the repository', async () => {
       await transactionService.getAll();
       expect(mockRepo.find).toHaveBeenCalled();
+    });
+  });
+
+  describe('getAllSellerBalance', () => {
+    it('should return an array of SellerBalanceDTOs', async () => {
+      const result = await transactionService.getAllSellerBalance();
+      expect(result).toEqual([
+        new SellerBalanceDTO("John Doe", 0.01)
+      ]);
     });
   });
 

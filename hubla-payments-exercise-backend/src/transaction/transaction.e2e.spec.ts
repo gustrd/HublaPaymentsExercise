@@ -84,6 +84,12 @@ describe('Transaction', () => {
           .expect(200);
     });
 
+    it(`/GET / should list all the seller balances`, () => {
+      return request(app.getHttpServer())
+        .get('/transaction/sellerBalance')
+        .expect(200);
+  });
+
   });
 
   afterAll(async () => {

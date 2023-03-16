@@ -1,7 +1,9 @@
 import { Controller, Get, Post, Body, UseInterceptors, UploadedFile, ParseFilePipe, MaxFileSizeValidator, FileTypeValidator } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
 import { TransactionDTO } from '../dto/transaction.dto';
+import { SellerBalanceDTO } from '../dto/sellerBalance.dto';
 import { FileInterceptor } from '@nestjs/platform-express/multer';
+
 
 @Controller('transaction')
 export class TransactionController {
@@ -10,6 +12,11 @@ export class TransactionController {
     @Get()
     public async getAll(): Promise<TransactionDTO[]> {
         return await this.serv.getAll()
+    }
+
+    @Get("sellerBalance")
+    public async getAllSellerBalance(): Promise<SellerBalanceDTO[]> {
+        return await this.serv.getAllSellerBalance()
     }
 
     @Post()
