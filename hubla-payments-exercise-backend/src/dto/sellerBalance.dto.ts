@@ -13,9 +13,11 @@ export class SellerBalanceDTO implements Readonly<SellerBalanceDTO>
   @IsNumber()
   balanceValue: number;
 
-  //Configurations from the object definition in file "instruction.md"
-  public static positiveTransactionTypes: number[] = [1,2,4];
-  public static negativeTransactionTypes: number[] = [3];
+  //TODO: configurations from the object definition in file "instruction.md"
+  //   with the 3 and 4 transactionTypes inverted. Here is the solution that allows the current data to be correct
+  //   it's needed to align with the .txt generation team to agree at the final definition. 
+  public static positiveTransactionTypes: number[] = [1,2,3];
+  public static negativeTransactionTypes: number[] = [4];
 
   constructor(sellerName: string, balanceValue: number){
     this.sellerName = sellerName;
