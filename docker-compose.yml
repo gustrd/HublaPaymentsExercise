@@ -9,7 +9,7 @@ services:
     image: nodejs-hubla-backend
     container_name: hubla-app-backend
     restart: unless-stopped
-    env_file: ./hubla-payments-exercise-backend/dot.env.dev
+    env_file: ./hubla-payments-exercise-backend/dot.env-dev
     environment:
       POSTGRES_HOST: "postgres"
     ports:
@@ -30,7 +30,7 @@ services:
     image: nodejs-hubla-frontend
     container_name: hubla-app-frontend
     restart: unless-stopped
-    env_file: ./hubla-payments-exercise-frontend/dot.env.dev
+    env_file: ./hubla-payments-exercise-frontend/dot.env-dev
     environment:
       REACT_APP_SERVER_BASE_URL: "http://127.0.0.1:3000"
       PORT: "3001"

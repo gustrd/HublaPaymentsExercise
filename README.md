@@ -49,7 +49,7 @@ Setup a postgres database at port 5432 with the dbname hubla_payments_exercise_d
 docker run -d --name hubla-postgres -e POSTGRES_DB=hubla_payments_exercise_database -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 postgres
 ```
 
-Rename both "dot.env.dev" files to ".env".
+Rename both "dot.env-dev" files to ".env".
 
 Navigate to the backend directory and run the following commands:
 
