@@ -30,7 +30,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set PORT=3001 || PORT=3001 ; react-scripts start",
+    "start": "set PORT=3001 && react-scripts start || PORT=3001 && react-scripts start",
     "build": "react-scripts build",
     "test": "jest -t SellerBalanceListDataTable component displays table data after loading",
     "eject": "react-scripts eject"
