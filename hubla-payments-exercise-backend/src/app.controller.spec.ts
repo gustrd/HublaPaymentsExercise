@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "Hello Message"', () => {
+      expect(appController.getHello()).toBe('This is only a back-end. You need to access /docs to see the Swagger documentation.');
     });
   });
 });

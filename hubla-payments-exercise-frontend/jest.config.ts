@@ -19,6 +19,8 @@ const config: Config = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/test/fileMock.js',
     '\\.(css|less)$': '<rootDir>/test/styleMock.js',
+    // Force module uuid to resolve with the CJS entry point, because Jest does not support package.json.exports. See https://github.com/uuidjs/uuid/issues/451
+    "uuid": require.resolve('uuid'),
   },
 };
 
