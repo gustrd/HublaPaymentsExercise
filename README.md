@@ -79,6 +79,7 @@ This is only an exercise an still has many points to be enhanced. Some of then a
 
 - Complete Unit Tests at the Front-end;
 - Documentation at Swagger;
+- Include user authorization/authentication;
 - Avoid repeated transaction info;
 - Enhance CSS;
 - Table sort and filter;
