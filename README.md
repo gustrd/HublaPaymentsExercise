@@ -79,7 +79,6 @@ You can now make changes to the code and see the changes reflected in the browse
 ### Future Development
 This is only an exercise an still has many points to be enhanced. Some of then are:
 
-- Complete Unit Tests at the Front-end;
 - Include data validation at the form;
 - Enhance documentation at Swagger;
 - Include user authorization/authentication;
