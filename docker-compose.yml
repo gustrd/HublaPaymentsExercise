@@ -20,7 +20,7 @@ services:
       restart_policy:
         condition: on-failure
     command: bash -c "
-      npm run typeorm:migration:run
+      npm run migration:run
       ; npm run start:dev"
 
   nodejs-hubla-frontend:
