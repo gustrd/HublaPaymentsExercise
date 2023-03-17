@@ -11,6 +11,7 @@ At the original instruction it is said that the TransactionType "3" is comission
 For example, for the transaction at datetime "2022-01-16T14:13:54-03:00" we have the following data:
 
 Type | Seller | Value 
+--- | --- | --- 
 2 | THIAGO OLIVEIRA | $ 127.50 
 3 | JOSE CARLOS | $ 45.00
 4 | THIAGO OLIVEIRA | $ 45.00
