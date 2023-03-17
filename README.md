@@ -26,6 +26,8 @@ To run this application, you need to have Docker and Docker Compose installed on
 ### Setup
 Clone this repository to your local machine.
 
+Rename both "dot.env-dev" files to ".env".
+
 Open a terminal and navigate to the root directory of the project.
 
 Run the following command to start the application:
@@ -44,13 +46,13 @@ The Swagger documentation for the API is available at http://localhost:3000/docs
 ### Development
 To develop the application, you will need to have Node.js, npm and yarn installed on your machine. You can then run the following commands:
 
+Rename both "dot.env-dev" files to ".env".
+
 Setup a postgres database at port 5432 with the dbname hubla_payments_exercise_database and , user postgres and password mysecretpassword. You can use the following docker command:
 
 ```
 docker run -d --name hubla-postgres -e POSTGRES_DB=hubla_payments_exercise_database -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 postgres
 ```
-
-Rename both "dot.env-dev" files to ".env".
 
 Navigate to the backend directory and run the following commands:
 
