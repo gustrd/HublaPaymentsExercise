@@ -1,6 +1,3 @@
-# HublaPaymentsExercise
-Exercise made for Hubla's hiring challenge.
-
 # Hubla Payments's Exercise - Web App with Nest.js and React
 This is a web application developed with Nest.js (back-end) and React (front-end), and uses Docker Compose to set up the solution. The database is PostgreSQL with TypeORM as ORM. The application provides a Swagger documentation for the API.
 
@@ -14,11 +11,8 @@ At the original instruction it is said that the TransactionType "3" is comission
 For example, for the transaction at datetime "2022-01-16T14:13:54-03:00" we have the following data:
 
 Type | Seller | Value 
---- | --- | --- 
 2 | THIAGO OLIVEIRA | $ 127.50 
---- | --- | --- 
 3 | JOSE CARLOS | $ 45.00
---- | --- | --- 
 4 | THIAGO OLIVEIRA | $ 45.00
 
 It's clear that Thiago is the affiliate paying the comission to the content creator José. So it makes no sense that José pays Thiago, as the original instruction suggests.
