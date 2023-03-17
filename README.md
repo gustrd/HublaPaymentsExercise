@@ -80,9 +80,9 @@ You can now make changes to the code and see the changes reflected in the browse
 This is only an exercise an still has many points to be enhanced. Some of then are:
 
 - Complete Unit Tests at the Front-end;
-- Documentation at Swagger;
+- Enhance documentation at Swagger;
 - Include user authorization/authentication;
-- Avoid repeated transaction info;
+- Avoid input of repeated transaction info;
 - Enhance CSS;
 - Table sort and filter;
 - Solve dependancy vulnerabilities/warnings.

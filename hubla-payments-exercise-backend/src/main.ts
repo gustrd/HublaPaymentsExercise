@@ -16,8 +16,8 @@ async function bootstrap() {
   if (!configService.isProduction()) 
   {
     const document = SwaggerModule.createDocument(app, new DocumentBuilder()
-      .setTitle('Transaction API')
-      .setDescription('API to view and modify the sell transactions, used at the reports.')
+      .setTitle('Hubla - Transaction API')
+      .setDescription('API to view and modify the sales transactions, used at the reports.')
       .build());
 
     SwaggerModule.setup('docs', app, document);
