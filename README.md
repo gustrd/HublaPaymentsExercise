@@ -59,7 +59,7 @@ Navigate to the backend directory and run the following commands:
 ```
 npm install
 //Creates the tables at the new database
-npm run type-orm:migration:run
+npm run migration:run
 npm run start:dev
 ```
 This will start the Nest.js server in development mode.
